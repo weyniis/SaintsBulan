@@ -1,4 +1,4 @@
-# KuasaBulanCSGO
+# CSGOPlus
 
 🚀 Up to date offset and dumper-config for Counter-Strike: Global Offensive. For more informations visit the [release page on UnKnoWnCheaTs](https://www.unknowncheats.me/forum/counterstrike-global-offensive/169351-haze-dumper-json-config-based-offset-dumper.html).
 
@@ -9,7 +9,7 @@ that nothing works, but they can't find a single signature themselves. However, 
 and also ClientState (`dwClientState`). All you need is a third offset which is located in ClientState, called `dwClientState_GetLocalPlayer`.
 
 ```C++
-const auto client_state = read_memory<std::uint32_t>( engine_image->base + kuasabulan::signatures::dwClientState );
+const auto client_state = read_memory<std::uint32_t>( engine_image->base + csgoplus::signatures::dwClientState );
 if( client_state ) {
     const auto local_player = get_client_entity( 
         read_memory<std::int32_t>( client_state + hazedumper::signatures::dwClientState_GetLocalPlayer )
@@ -19,7 +19,7 @@ if( client_state ) {
         printf(
             "[+] Found local player: 0x%X, health: %d\n",
             local_player,
-            read_memory<std::int32_t>( local_player + kuasabulan::netvars::m_iHealth )
+            read_memory<std::int32_t>( local_player + csgoplus::netvars::m_iHealth )
         );
     }
 }
